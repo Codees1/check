@@ -92,10 +92,10 @@ def check_username(nick):
         except:
             print(f"{Fore.RED}[-] {name}: Ошибка проверки{Fore.RESET}")
     
-    print(f"\n{Fore.YELLOW} Результаты:{Fore.RESET}")
-    print(f"{Fore.GREEN} Найдено: {found} аккаунтов{Fore.RESET}")
-    print(f"{Fore.RED} Не найдено: {total - found} аккаунтов{Fore.RESET}")
-    print(f"\n{Fore.CYAN} Пояснение:{Fore.RESET}")
+    print(f"\n{Fore.YELLOW} Результаты{Fore.RESET}")
+    print(f"{Fore.GREEN} Найдено {found} аккаунтов{Fore.RESET}")
+    print(f"{Fore.RED} Не найдено {total - found} аккаунтов{Fore.RESET}")
+    print(f"\n{Fore.CYAN} Пояснение{Fore.RESET}")
     print(f"{Fore.GREEN}Зелёный - аккаунт существует{Fore.RESET}")
     print(f"{Fore.RED}Красный - аккаунт не найден{Fore.RESET}")
 
