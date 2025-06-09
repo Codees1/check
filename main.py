@@ -11,7 +11,7 @@ def install_library(library):
     """Установка библиотеки, если она отсутствует."""
     try:
         __import__(library)
-        print(f"[+] {library} уже установлен")
+        print(f"[+] {library} True")
     except ImportError:
         print(f"[!] Устанавливаем {library}...")
         try:
