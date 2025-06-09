@@ -3,6 +3,7 @@ import subprocess
 import sys
 import time
 import logging
+import requests
 from colorama import Fore, init
 
 init()
