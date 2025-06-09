@@ -1,44 +1,13 @@
-import os
-import subprocess
-import sys
-import time
-import logging
-
-
-logging.basicConfig(filename='errors.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
-
-def install_library(library):
-    
-    try:
-        __import__(library)
-        print(f"[+] {library} True")
-    except ImportError:
-        print(f"[!] Syka {library}...")
-        try:
-            subprocess.check_call([sys.executable, "-m", "pip", "install", library])
-            print(f"[+] {library} Syka")
-        except subprocess.CalledProcessError as e:
-            print(f"[!] Syka {library}: {str(e)}")
-            print(f"Syka {library}")
-            input("Нажмите Enter для выхода...")
-            sys.exit(1)
-
-
-for lib in ["colorama", "requests"]:
-    install_library(lib)
-
-from colorama import Fore, init
 import requests
+import time
+from colorama import Fore, init
 
-
-init(autoreset=True)
+init()
 
 def clear():
-    
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def print_art():
-    
     art = f"""
 {Fore.GREEN}
   /$$$$$$  /$$                           /$$                        
