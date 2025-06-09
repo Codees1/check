@@ -8,7 +8,7 @@ import logging
 logging.basicConfig(filename='errors.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def install_library(library):
-    """Установка библиотеки, если она отсутствует."""
+    
     try:
         __import__(library)
         print(f"[+] {library} True")
@@ -34,11 +34,11 @@ import requests
 init(autoreset=True)
 
 def clear():
-    """Очистка терминала."""
+    
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def print_art():
-    """Вывод ASCII-арта и меню."""
+    
     art = f"""
 {Fore.GREEN}
   /$$$$$$  /$$                           /$$                        
