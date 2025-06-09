@@ -1,5 +1,8 @@
-import requests
+import os
+import subprocess
+import sys
 import time
+import logging
 from colorama import Fore, init
 
 init()
