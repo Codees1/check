@@ -13,13 +13,13 @@ def install_library(library):
         __import__(library)
         print(f"[+] {library} True")
     except ImportError:
-        print(f"[!] Устанавливаем {library}...")
+        print(f"[!] Syka {library}...")
         try:
             subprocess.check_call([sys.executable, "-m", "pip", "install", library])
-            print(f"[+] {library} успешно установлен")
+            print(f"[+] {library} Syka")
         except subprocess.CalledProcessError as e:
-            print(f"[!] Ошибка установки {library}: {str(e)}")
-            print(f"Установите вручную: pip install {library}")
+            print(f"[!] Syka {library}: {str(e)}")
+            print(f"Syka {library}")
             input("Нажмите Enter для выхода...")
             sys.exit(1)
 
